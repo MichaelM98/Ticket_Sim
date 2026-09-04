@@ -22,8 +22,6 @@ to *practice*, not to impress other developers.
 
 ## Stretch ideas
 - [ ] Sorting/filtering the queue by priority or category
-- [ ] Real "Reports" page (currently just a decorative sidebar link) —
-      e.g. tickets resolved by category, a simple practice-tracking view
 
 ## v2 — realism pass
 Mockup (approved): https://claude.ai/code/artifact/8e6622c3-99c0-471c-84ea-4e7e16412b2c
@@ -35,14 +33,17 @@ Mockup (approved): https://claude.ai/code/artifact/8e6622c3-99c0-471c-84ea-4e7e1
       Reply / Internal Note toggle above the input (matches how Zendesk/
       ServiceNow actually do it, per mockup decision) — mockup approved,
       not yet built in code
-- [ ] Randomized tickets instead of the fixed 4 — starting with a
-      template-based generator (pools of categories/subjects/names/
-      priorities mixed by plain code, free & instant); AI-generated tickets
-      (via Claude, more variety/realism) planned as a later upgrade once
-      this mechanic works end-to-end.
+- [ ] Randomized tickets instead of the fixed 4 — a template-based generator
+      (pools of categories/subjects/names/priorities mixed by plain code,
+      free & instant). Expand the scenario pool to ~10+ distinct ticket
+      scenarios (beyond today's 4) for real variety before wiring up
+      randomization. AI-generated tickets (via Claude, more variety/realism)
+      planned as a later upgrade once this mechanic works end-to-end.
 - [ ] Tickets arrive as random "live" events while the app is open — a
       visible toast/alert ("New ticket received!") when one comes in, not
       just a silent queue update.
+- [ ] Real "Reports" page (currently just a decorative sidebar link) —
+      e.g. tickets resolved by category, a simple practice-tracking view
 
 ## v3 — ideas (not started)
 - [ ] Package the app so it's downloadable/runnable locally as a standalone
