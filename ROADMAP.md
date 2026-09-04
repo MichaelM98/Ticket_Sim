@@ -40,8 +40,9 @@ Mockup (approved): https://claude.ai/code/artifact/8e6622c3-99c0-471c-84ea-4e7e1
       randomly-generated ticket appears every 20-45 seconds with a toast
       alert ("New ticket received!"), via a self-rescheduling `setTimeout`
       in `App.jsx`
-- [ ] Real "Reports" page (currently just a decorative sidebar link) —
-      e.g. tickets resolved by category, a simple practice-tracking view
+- [x] Real "Reports" page — Status/Category/Priority breakdowns (counts +
+      bars) for the current session's tickets; sidebar nav now actually
+      switches between Tickets/Reports ("Customers" stays decorative)
 
 ## v3 — ideas (not started)
 - [ ] Package the app so it's downloadable/runnable locally as a standalone
