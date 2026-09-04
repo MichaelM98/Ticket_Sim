@@ -1,7 +1,6 @@
-import tickets from '../data/tickets';
 import TicketCard from './TicketCard';
 
-function TicketQueue({ onSelectTicket }) {
+function TicketQueue({ tickets, onSelectTicket }) {
     return (
         <div className="ticket-queue">
             {tickets.map((ticket) => (

@@ -5,6 +5,9 @@ function TicketCard({ ticket, onClick }) {
       <p className="ticket-meta">
         <span className="priority-badge">{ticket.priority}</span>
         <span className="category-badge">{ticket.category}</span>
+        <span className={`status-badge status-${ticket.status.toLowerCase()}`}>
+          {ticket.status}
+        </span>
       </p>
     </div>
   )

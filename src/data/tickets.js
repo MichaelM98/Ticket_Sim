@@ -5,7 +5,8 @@ const tickets = [
         priority: "High",
         category: "Network",
         requester: "John Doe",
-        description: "Laptop shows 'Wi-Fi' but says no internet access since this morning"
+        description: "Laptop shows 'Wi-Fi' but says no internet access since this morning",
+        status: "Open"
     },
     {
         id: 2,
@@ -13,7 +14,8 @@ const tickets = [
         priority: "Medium",
         category: "Software",
         requester: "Marcus Lee",
-        description: "Excel closes unexpectedly whenever trying to save a large spreadsheet."
+        description: "Excel closes unexpectedly whenever trying to save a large spreadsheet.",
+        status: "Open"
     },
     {
         id: 3,
@@ -21,7 +23,8 @@ const tickets = [
         priority: "Low",
         category: "Hardware",
         requester: "Priya Nair",
-        description: "Just unboxed a new monitor, power light doesn't come on at all."
+        description: "Just unboxed a new monitor, power light doesn't come on at all.",
+        status: "Open"
     },
     {
         id: 4,
@@ -29,7 +32,8 @@ const tickets = [
         priority: "High",
         category: "Account",
         requester: "Sam Okafor",
-        description: "Password reset email never arrives, tried three times."
+        description: "Password reset email never arrives, tried three times.",
+        status: "Open"
     }
 ];
 export default tickets;

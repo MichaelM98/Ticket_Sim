@@ -16,8 +16,9 @@ to *practice*, not to impress other developers.
 - [x] AI-simulated customer chat in the ticket detail view (the centerpiece
       feature) — Express backend (`server/`) holds the API key, calls
       Claude Haiku 4.5, frontend `ChatPanel.jsx` talks to it
-- [ ] Resolve / Close actions on a ticket, reflected as a status badge back
-      in the queue (Open / In Progress / Resolved)
+- [x] Resolve / Close actions on a ticket, reflected as a status badge back
+      in the queue (Open / Resolved / Closed) — intentionally resets on page
+      reload (no persistence) so every reload is a fresh practice run
 
 ## Stretch ideas
 - [ ] Troubleshooting notes field on a ticket (mirrors real documentation habits)
