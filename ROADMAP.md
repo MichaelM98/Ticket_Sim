@@ -44,6 +44,25 @@ Mockup (approved): https://claude.ai/code/artifact/8e6622c3-99c0-471c-84ea-4e7e1
       bars) for the current session's tickets; sidebar nav now actually
       switches between Tickets/Reports ("Customers" stays decorative)
 
+## v2.5 — deeper practice value
+Claude's picks for what actually builds the underlying skill, not just
+"looks realistic":
+- [ ] Post-resolution AI feedback — on Mark Resolved, an AI "quality
+      reviewer" briefly critiques the technician's questions, professionalism,
+      and whether the root cause was actually found. Closes the loop between
+      "practiced a ticket" and "know if you did it well."
+- [ ] Escalation option — an "Escalate to Tier 2" action alongside Resolve/
+      Close (new "Escalated" status/badge). Knowing when to escalate rather
+      than struggle is a real, tested help-desk skill.
+- [ ] Vague/non-technical customers — some generated tickets spawn a customer
+      who describes their problem imprecisely ("it's just not working") and
+      needs to be drawn out with good questions, instead of every customer
+      giving a clear, complete description up front.
+- [ ] Small built-in Knowledge Base — a handful of short troubleshooting
+      articles (searchable) covering the common ticket categories, so there's
+      something realistic to reference mid-ticket instead of working from
+      memory alone.
+
 ## v3 — ideas (not started)
 - [ ] Package the app so it's downloadable/runnable locally as a standalone
       program, not just a dev server (`npm run dev`). Likely needs something
