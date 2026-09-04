@@ -1,4 +1,4 @@
-function Sidebar() {
+function Sidebar({ view, onNavigate }) {
   return (
     <div className="sidebar">
       <div className="sidebar-brand">
@@ -9,9 +9,19 @@ function Sidebar() {
         <span>DeskFlow</span>
       </div>
 
-      <div className="nav-item active">Tickets</div>
+      <div
+        className={`nav-item ${view === 'tickets' ? 'active' : ''}`}
+        onClick={() => onNavigate('tickets')}
+      >
+        Tickets
+      </div>
       <div className="nav-item">Customers</div>
-      <div className="nav-item">Reports</div>
+      <div
+        className={`nav-item ${view === 'reports' ? 'active' : ''}`}
+        onClick={() => onNavigate('reports')}
+      >
+        Reports
+      </div>
 
       <div className="sidebar-spacer" />
 

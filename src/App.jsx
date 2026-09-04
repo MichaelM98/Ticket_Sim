@@ -5,11 +5,18 @@ import Sidebar from './components/Sidebar'
 import TicketQueue from './components/TicketQueue'
 import TicketDetail from './components/TicketDetail'
 import Toast from './components/Toast'
+import Reports from './components/Reports'
 
 function App() {
   const [tickets, setTickets] = useState(() => generateTickets(5))
   const [selectedTicketId, setSelectedTicketId] = useState(null)
   const [toastTicket, setToastTicket] = useState(null)
+  const [view, setView] = useState('tickets')
+
+  function handleNavigate(nextView) {
+    setView(nextView)
+    setSelectedTicketId(null)
+  }
 
   const selectedTicket = tickets.find((ticket) => ticket.id === selectedTicketId)
 
@@ -45,9 +52,11 @@ function App() {
 
   return (
     <div className="app-shell">
-      <Sidebar />
+      <Sidebar view={view} onNavigate={handleNavigate} />
       <div className="app-content">
-        {selectedTicket ? (
+        {view === 'reports' ? (
+          <Reports tickets={tickets} />
+        ) : selectedTicket ? (
           <TicketDetail
             ticket={selectedTicket}
             onBack={() => setSelectedTicketId(null)}

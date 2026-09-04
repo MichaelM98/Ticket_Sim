@@ -58,6 +58,7 @@ a {
   color: oklch(78% 0.02 260);
   font-size: 14px;
   font-weight: 500;
+  cursor: pointer;
 }
 
 .nav-item.active {
@@ -439,6 +440,51 @@ a {
 .chat-input-row button:disabled {
   background: oklch(80% 0.06 265);
   cursor: not-allowed;
+}
+
+/* Reports */
+.reports-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  align-items: start;
+}
+
+.report-row {
+  margin-bottom: 12px;
+}
+
+.report-row:last-child {
+  margin-bottom: 0;
+}
+
+.report-row-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  margin-bottom: 4px;
+}
+
+.report-row-label span:first-child {
+  color: oklch(20% 0.01 260);
+}
+
+.report-row-label span:last-child {
+  font-weight: 700;
+  color: oklch(45% 0.01 260);
+}
+
+.report-bar-track {
+  background: oklch(94% 0.005 260);
+  border-radius: 999px;
+  height: 6px;
+  overflow: hidden;
+}
+
+.report-bar-fill {
+  background: oklch(55% 0.15 265);
+  height: 100%;
+  border-radius: 999px;
 }
 
 /* Toast notification */
