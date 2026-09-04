@@ -13,9 +13,9 @@ to *practice*, not to impress other developers.
 ## Next up
 - [x] Styling pass — make it look like a real internal tool (spacing,
       priority color-coding) instead of bare HTML
-- [ ] AI-simulated customer chat in the ticket detail view (the centerpiece
-      feature) — requires a small backend/serverless piece to hold the API
-      key safely (can't call an AI API directly from the browser)
+- [x] AI-simulated customer chat in the ticket detail view (the centerpiece
+      feature) — Express backend (`server/`) holds the API key, calls
+      Claude Haiku 4.5, frontend `ChatPanel.jsx` talks to it
 - [ ] Resolve / Close actions on a ticket, reflected as a status badge back
       in the queue (Open / In Progress / Resolved)
 
