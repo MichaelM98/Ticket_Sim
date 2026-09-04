@@ -1,12 +1,12 @@
 import { useState } from 'react'
 import './App.css'
-import initialTickets from './data/tickets'
+import { generateTickets } from './data/generateTicket'
 import Sidebar from './components/Sidebar'
 import TicketQueue from './components/TicketQueue'
 import TicketDetail from './components/TicketDetail'
 
 function App() {
-  const [tickets, setTickets] = useState(initialTickets)
+  const [tickets, setTickets] = useState(() => generateTickets(5))
   const [selectedTicketId, setSelectedTicketId] = useState(null)
 
   const selectedTicket = tickets.find((ticket) => ticket.id === selectedTicketId)
