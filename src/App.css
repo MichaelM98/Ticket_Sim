@@ -363,11 +363,57 @@ a {
   color: oklch(60% 0.01 260);
 }
 
+.chat-bubble.note {
+  align-self: center;
+  max-width: 85%;
+  width: 100%;
+  background: oklch(96% 0.03 90);
+  border: 1px dashed oklch(70% 0.08 90);
+  border-radius: 8px;
+  color: oklch(38% 0.06 90);
+}
+
+.note-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 700;
+  color: oklch(45% 0.1 90);
+  margin-bottom: 2px;
+}
+
+.chat-input-area {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 14px 20px;
+  border-top: 1px solid oklch(94% 0.005 260);
+}
+
+.chat-mode-toggle {
+  display: flex;
+  gap: 6px;
+}
+
+.chat-mode-toggle button {
+  background: oklch(95% 0.003 260);
+  color: oklch(45% 0.01 260);
+  border: none;
+  border-radius: 6px;
+  padding: 5px 12px;
+  font-weight: 700;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.chat-mode-toggle button.active {
+  background: oklch(55% 0.15 265);
+  color: white;
+}
+
 .chat-input-row {
   display: flex;
   gap: 10px;
-  padding: 16px 20px;
-  border-top: 1px solid oklch(94% 0.005 260);
 }
 
 .chat-input-row input {
