@@ -32,12 +32,11 @@ Mockup (approved): https://claude.ai/code/artifact/8e6622c3-99c0-471c-84ea-4e7e1
       distinct "Internal note — not visible to requester" bubble, with a
       Reply / Internal Note toggle above the input; notes are filtered out
       before anything is sent to the AI, so the customer never sees them
-- [ ] Randomized tickets instead of the fixed 4 — a template-based generator
-      (pools of categories/subjects/names/priorities mixed by plain code,
-      free & instant). Expand the scenario pool to ~10+ distinct ticket
-      scenarios (beyond today's 4) for real variety before wiring up
-      randomization. AI-generated tickets (via Claude, more variety/realism)
-      planned as a later upgrade once this mechanic works end-to-end.
+- [x] Randomized tickets instead of the fixed 4 — a template-based generator
+      (`src/data/generateTicket.js`) mixing 14 scenarios × 10 requesters × 3
+      priorities by plain code, free & instant; app loads with 5 random
+      tickets each time. AI-generated tickets (via Claude, more variety/
+      realism) still a possible later upgrade.
 - [ ] Tickets arrive as random "live" events while the app is open — a
       visible toast/alert ("New ticket received!") when one comes in, not
       just a silent queue update.
