@@ -95,7 +95,71 @@ h1 {
   text-decoration: underline;
 }
 
-.chat-placeholder {
-  color: #6b7280;
+/* Chat panel */
+.chat-panel {
   margin-top: 1.5rem;
+  border-top: 1px solid #e5e7eb;
+  padding-top: 1rem;
+}
+
+.chat-messages {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  max-height: 300px;
+  overflow-y: auto;
+  margin-bottom: 0.75rem;
+}
+
+.chat-bubble {
+  max-width: 75%;
+  padding: 0.5rem 0.75rem;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.chat-bubble.customer {
+  align-self: flex-start;
+  background: #f3f4f6;
+  color: #1f2937;
+}
+
+.chat-bubble.tech {
+  align-self: flex-end;
+  background: #2563eb;
+  color: #fff;
+}
+
+.chat-bubble.typing {
+  font-style: italic;
+  color: #9ca3af;
+}
+
+.chat-input-row {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.chat-input-row input {
+  flex: 1;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 0.9rem;
+}
+
+.chat-input-row button {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 6px;
+  background: #2563eb;
+  color: #fff;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.chat-input-row button:disabled {
+  background: #93c5fd;
+  cursor: not-allowed;
 }

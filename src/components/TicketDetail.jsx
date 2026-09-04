@@ -1,3 +1,5 @@
+import ChatPanel from './ChatPanel'
+
 function TicketDetail({ ticket, onBack }) {
   return (
     <div className="ticket-detail">
@@ -8,8 +10,7 @@ function TicketDetail({ ticket, onBack }) {
         <span className="category-badge">{ticket.category}</span>
       </p>
       <p><strong>Requester:</strong> {ticket.requester}</p>
-      <p>{ticket.description}</p>
-      <p className="chat-placeholder"><em>Chat coming soon...</em></p>
+      <ChatPanel ticket={ticket} />
     </div>
   )
 }
