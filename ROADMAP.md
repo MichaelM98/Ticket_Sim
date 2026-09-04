@@ -6,7 +6,6 @@ to *practice*, not to impress other developers.
 
 ## Done
 - [x] Vite + React project scaffolded
-- [x] Sample ticket data (`src/data/tickets.js`)
 - [x] Ticket queue view — list of tickets (subject/priority/category), clickable
 - [x] Ticket detail placeholder view + back navigation
 
@@ -37,9 +36,10 @@ Mockup (approved): https://claude.ai/code/artifact/8e6622c3-99c0-471c-84ea-4e7e1
       priorities by plain code, free & instant; app loads with 5 random
       tickets each time. AI-generated tickets (via Claude, more variety/
       realism) still a possible later upgrade.
-- [ ] Tickets arrive as random "live" events while the app is open — a
-      visible toast/alert ("New ticket received!") when one comes in, not
-      just a silent queue update.
+- [x] Tickets arrive as random "live" events while the app is open — a new
+      randomly-generated ticket appears every 20-45 seconds with a toast
+      alert ("New ticket received!"), via a self-rescheduling `setTimeout`
+      in `App.jsx`
 - [ ] Real "Reports" page (currently just a decorative sidebar link) —
       e.g. tickets resolved by category, a simple practice-tracking view
 
