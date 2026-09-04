@@ -21,13 +21,20 @@ to *practice*, not to impress other developers.
       reload (no persistence) so every reload is a fresh practice run
 
 ## Stretch ideas
-- [ ] Troubleshooting notes field on a ticket (mirrors real documentation habits)
 - [ ] Sorting/filtering the queue by priority or category
+- [ ] Real "Reports" page (currently just a decorative sidebar link) —
+      e.g. tickets resolved by category, a simple practice-tracking view
 
 ## v2 — realism pass
-- [ ] Zendesk-inspired redesign (original look, not a copy) — sidebar nav,
-      ticket table/list, top bar. Sketching a visual mockup first before
-      writing CSS.
+Mockup (approved): https://claude.ai/code/artifact/8e6622c3-99c0-471c-84ea-4e7e16412b2c
+- [x] Zendesk-inspired redesign (original look, not a copy) — dark sidebar
+      nav ("DeskFlow" branding), dense ticket table, ticket detail with a
+      chat + right-rail (Requester/Details) layout
+- [ ] Troubleshooting notes — woven into the chat timeline itself as a
+      distinct "Internal note — not visible to requester" bubble, with a
+      Reply / Internal Note toggle above the input (matches how Zendesk/
+      ServiceNow actually do it, per mockup decision) — mockup approved,
+      not yet built in code
 - [ ] Randomized tickets instead of the fixed 4 — starting with a
       template-based generator (pools of categories/subjects/names/
       priorities mixed by plain code, free & instant); AI-generated tickets
