@@ -24,6 +24,25 @@ to *practice*, not to impress other developers.
 - [ ] Troubleshooting notes field on a ticket (mirrors real documentation habits)
 - [ ] Sorting/filtering the queue by priority or category
 
+## v2 — realism pass
+- [ ] Zendesk-inspired redesign (original look, not a copy) — sidebar nav,
+      ticket table/list, top bar. Sketching a visual mockup first before
+      writing CSS.
+- [ ] Randomized tickets instead of the fixed 4 — starting with a
+      template-based generator (pools of categories/subjects/names/
+      priorities mixed by plain code, free & instant); AI-generated tickets
+      (via Claude, more variety/realism) planned as a later upgrade once
+      this mechanic works end-to-end.
+- [ ] Tickets arrive as random "live" events while the app is open — a
+      visible toast/alert ("New ticket received!") when one comes in, not
+      just a silent queue update.
+
+## v3 — ideas (not started)
+- [ ] Package the app so it's downloadable/runnable locally as a standalone
+      program, not just a dev server (`npm run dev`). Likely needs something
+      like Electron/Tauri to bundle both the React frontend and the Express
+      backend together — needs more research when we get there.
+
 ## Resume framing (for later)
 - One-liner: "Help Desk Simulator — practice tool for IT support
   troubleshooting, ticket triage, and customer communication."
