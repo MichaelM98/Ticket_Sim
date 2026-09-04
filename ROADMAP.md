@@ -11,7 +11,7 @@ to *practice*, not to impress other developers.
 - [x] Ticket detail placeholder view + back navigation
 
 ## Next up
-- [ ] Styling pass — make it look like a real internal tool (spacing,
+- [x] Styling pass — make it look like a real internal tool (spacing,
       priority color-coding) instead of bare HTML
 - [ ] AI-simulated customer chat in the ticket detail view (the centerpiece
       feature) — requires a small backend/serverless piece to hold the API
