@@ -3,7 +3,7 @@ import TicketCard from './TicketCard';
 
 function TicketQueue({ onSelectTicket }) {
     return (
-        <div>
+        <div className="ticket-queue">
             {tickets.map((ticket) => (
                 <TicketCard
                 key={ticket.id}

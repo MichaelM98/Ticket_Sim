@@ -10,7 +10,7 @@ function App() {
   const selectedTicket = tickets.find((ticket) => ticket.id === selectedTicketId)
 
   return (
-    <div>
+    <div className="app">
       <h1>Help Desk Ticket Queue</h1>
       {selectedTicket ? (
         <TicketDetail
