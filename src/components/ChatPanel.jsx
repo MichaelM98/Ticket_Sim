@@ -40,6 +40,7 @@ function ChatPanel({ ticket }) {
 
   return (
     <div className="chat-panel">
+      <div className="chat-panel-header">Conversation</div>
       <div className="chat-messages">
         <div className="chat-bubble customer">{ticket.description}</div>
         {messages.map((msg, index) => (

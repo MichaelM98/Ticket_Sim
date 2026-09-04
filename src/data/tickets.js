@@ -5,6 +5,7 @@ const tickets = [
         priority: "High",
         category: "Network",
         requester: "John Doe",
+        department: "Accounting Dept.",
         description: "Laptop shows 'Wi-Fi' but says no internet access since this morning",
         status: "Open"
     },
@@ -14,6 +15,7 @@ const tickets = [
         priority: "Medium",
         category: "Software",
         requester: "Marcus Lee",
+        department: "Finance Dept.",
         description: "Excel closes unexpectedly whenever trying to save a large spreadsheet.",
         status: "Open"
     },
@@ -23,6 +25,7 @@ const tickets = [
         priority: "Low",
         category: "Hardware",
         requester: "Priya Nair",
+        department: "Marketing Dept.",
         description: "Just unboxed a new monitor, power light doesn't come on at all.",
         status: "Open"
     },
@@ -32,6 +35,7 @@ const tickets = [
         priority: "High",
         category: "Account",
         requester: "Sam Okafor",
+        department: "Sales Dept.",
         description: "Password reset email never arrives, tried three times.",
         status: "Open"
     }

@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import './App.css'
 import initialTickets from './data/tickets'
+import Sidebar from './components/Sidebar'
 import TicketQueue from './components/TicketQueue'
 import TicketDetail from './components/TicketDetail'
 
@@ -19,17 +20,19 @@ function App() {
   }
 
   return (
-    <div className="app">
-      <h1>Help Desk Ticket Queue</h1>
-      {selectedTicket ? (
-        <TicketDetail
-          ticket={selectedTicket}
-          onBack={() => setSelectedTicketId(null)}
-          onUpdateStatus={updateTicketStatus}
-        />
-      ) : (
-        <TicketQueue tickets={tickets} onSelectTicket={setSelectedTicketId} />
-      )}
+    <div className="app-shell">
+      <Sidebar />
+      <div className="app-content">
+        {selectedTicket ? (
+          <TicketDetail
+            ticket={selectedTicket}
+            onBack={() => setSelectedTicketId(null)}
+            onUpdateStatus={updateTicketStatus}
+          />
+        ) : (
+          <TicketQueue tickets={tickets} onSelectTicket={setSelectedTicketId} />
+        )}
+      </div>
     </div>
   )
 }
