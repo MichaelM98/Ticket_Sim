@@ -28,11 +28,10 @@ Mockup (approved): https://claude.ai/code/artifact/8e6622c3-99c0-471c-84ea-4e7e1
 - [x] Zendesk-inspired redesign (original look, not a copy) — dark sidebar
       nav ("DeskFlow" branding), dense ticket table, ticket detail with a
       chat + right-rail (Requester/Details) layout
-- [ ] Troubleshooting notes — woven into the chat timeline itself as a
+- [x] Troubleshooting notes — woven into the chat timeline itself as a
       distinct "Internal note — not visible to requester" bubble, with a
-      Reply / Internal Note toggle above the input (matches how Zendesk/
-      ServiceNow actually do it, per mockup decision) — mockup approved,
-      not yet built in code
+      Reply / Internal Note toggle above the input; notes are filtered out
+      before anything is sent to the AI, so the customer never sees them
 - [ ] Randomized tickets instead of the fixed 4 — a template-based generator
       (pools of categories/subjects/names/priorities mixed by plain code,
       free & instant). Expand the scenario pool to ~10+ distinct ticket
