@@ -55,10 +55,10 @@ Claude's picks for what actually builds the underlying skill, not just
 - [x] Escalation option — an "Escalate to Tier 2" action alongside Resolve/
       Close, with its own "Escalated" status/badge (reflected in the queue
       table and Reports breakdown too).
-- [ ] Vague/non-technical customers — some generated tickets spawn a customer
-      who describes their problem imprecisely ("it's just not working") and
-      needs to be drawn out with good questions, instead of every customer
-      giving a clear, complete description up front.
+- [x] Vague/non-technical customers — ~40% of generated tickets get a hidden
+      `vague` flag that adds instructions to the AI's system prompt so that
+      customer needs to be drawn out with good questions instead of giving
+      clear details up front; invisible in the UI, so it's a surprise.
 - [ ] Small built-in Knowledge Base — a handful of short troubleshooting
       articles (searchable) covering the common ticket categories, so there's
       something realistic to reference mid-ticket instead of working from
