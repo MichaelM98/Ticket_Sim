@@ -487,6 +487,23 @@ a {
   border-radius: 999px;
 }
 
+.feedback-card {
+  border-color: oklch(80% 0.1 265);
+  background: oklch(97% 0.02 265);
+}
+
+.feedback-loading {
+  font-size: 13px;
+  color: oklch(55% 0.01 260);
+  font-style: italic;
+}
+
+.feedback-text {
+  font-size: 13px;
+  line-height: 1.5;
+  color: oklch(25% 0.02 265);
+}
+
 /* Toast notification */
 .toast {
   position: fixed;

@@ -31,6 +31,31 @@ app.post('/api/chat', async (req, res) => {
   }
 })
 
+app.post('/api/feedback', async (req, res) => {
+  const { ticket, messages } = req.body
+
+  const transcript = messages
+    .map((msg) => `${msg.role === 'user' ? 'Technician' : 'Customer'}: ${msg.content}`)
+    .join('\n')
+
+  const systemPrompt = `You are an experienced IT help desk quality reviewer. Below is a transcript of a support technician handling this ticket: "${ticket.subject}" - ${ticket.description}. Give brief, constructive feedback (3-4 sentences) on how well the technician diagnosed the issue, asked good troubleshooting questions, and communicated professionally. Be encouraging but honest, and end with one specific tip for improvement.`
+
+  try {
+    const response = await anthropic.messages.create({
+      model: 'claude-haiku-4-5',
+      max_tokens: 300,
+      system: systemPrompt,
+      messages: [{ role: 'user', content: `Transcript:\n${transcript}` }],
+    })
+
+    const textBlock = response.content.find((block) => block.type === 'text')
+    res.json({ feedback: textBlock ? textBlock.text : '' })
+  } catch (error) {
+    console.error(error)
+    res.status(500).json({ error: 'Something went wrong getting feedback.' })
+  }
+})
+
 const PORT = 3001
 app.listen(PORT, () => {
   console.log(`Server listening on http://localhost:${PORT}`)

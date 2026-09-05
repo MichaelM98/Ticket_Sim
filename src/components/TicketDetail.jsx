@@ -1,10 +1,84 @@
+import { useState } from 'react'
 import ChatPanel from './ChatPanel'
+import FeedbackPanel from './FeedbackPanel'
 
 function TicketDetail({ ticket, onBack, onUpdateStatus }) {
+  const [messages, setMessages] = useState([])
+  const [input, setInput] = useState('')
+  const [mode, setMode] = useState('reply')
+  const [loading, setLoading] = useState(false)
+  const [feedback, setFeedback] = useState(null)
+  const [feedbackLoading, setFeedbackLoading] = useState(false)
+
   const initials = ticket.requester
     .split(' ')
     .map((word) => word[0])
     .join('')
+
+  function conversationOnly(msgList) {
+    return msgList
+      .filter((msg) => msg.type === 'chat')
+      .map((msg) => ({ role: msg.role, content: msg.content }))
+  }
+
+  async function sendMessage() {
+    if (!input.trim()) return
+
+    if (mode === 'note') {
+      setMessages((prev) => [...prev, { type: 'note', content: input }])
+      setInput('')
+      return
+    }
+
+    const newMessages = [...messages, { type: 'chat', role: 'user', content: input }]
+    setMessages(newMessages)
+    setInput('')
+    setLoading(true)
+
+    try {
+      const res = await fetch('http://localhost:3001/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ticket, messages: conversationOnly(newMessages) }),
+      })
+      const data = await res.json()
+      setMessages((prev) => [...prev, { type: 'chat', role: 'assistant', content: data.reply }])
+    } catch (error) {
+      console.error(error)
+      setMessages((prev) => [
+        ...prev,
+        { type: 'chat', role: 'assistant', content: '[Could not reach the AI server]' },
+      ])
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  async function requestFeedback() {
+    const transcript = conversationOnly(messages)
+    if (transcript.length === 0) return // nothing to review yet
+
+    setFeedbackLoading(true)
+    try {
+      const res = await fetch('http://localhost:3001/api/feedback', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ticket, messages: transcript }),
+      })
+      const data = await res.json()
+      setFeedback(data.feedback)
+    } catch (error) {
+      console.error(error)
+      setFeedback('Could not get feedback right now.')
+    } finally {
+      setFeedbackLoading(false)
+    }
+  }
+
+  function handleResolve() {
+    onUpdateStatus(ticket.id, 'Resolved')
+    requestFeedback()
+  }
 
   return (
     <div className="ticket-detail">
@@ -20,13 +94,22 @@ function TicketDetail({ ticket, onBack, onUpdateStatus }) {
           </div>
         </div>
         <div className="ticket-actions">
-          <button onClick={() => onUpdateStatus(ticket.id, 'Resolved')}>Mark Resolved</button>
+          <button onClick={handleResolve}>Mark Resolved</button>
           <button onClick={() => onUpdateStatus(ticket.id, 'Closed')}>Close Ticket</button>
         </div>
       </div>
 
       <div className="detail-body">
-        <ChatPanel ticket={ticket} />
+        <ChatPanel
+          ticket={ticket}
+          messages={messages}
+          mode={mode}
+          onModeChange={setMode}
+          input={input}
+          onInputChange={setInput}
+          onSend={sendMessage}
+          loading={loading}
+        />
 
         <div className="right-rail">
           <div className="info-card">
@@ -51,6 +134,10 @@ function TicketDetail({ ticket, onBack, onUpdateStatus }) {
               <span>{ticket.category}</span>
             </div>
           </div>
+
+          {(feedback || feedbackLoading) && (
+            <FeedbackPanel feedback={feedback} loading={feedbackLoading} />
+          )}
         </div>
       </div>
     </div>

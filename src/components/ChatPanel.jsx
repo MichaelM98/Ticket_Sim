@@ -1,52 +1,7 @@
-import { useState } from 'react'
-
-function ChatPanel({ ticket }) {
-  const [messages, setMessages] = useState([])
-  const [input, setInput] = useState('')
-  const [mode, setMode] = useState('reply')
-  const [loading, setLoading] = useState(false)
-
-  async function sendMessage() {
-    if (!input.trim()) return
-
-    if (mode === 'note') {
-      setMessages((prev) => [...prev, { type: 'note', content: input }])
-      setInput('')
-      return
-    }
-
-    const newMessages = [...messages, { type: 'chat', role: 'user', content: input }]
-    setMessages(newMessages)
-    setInput('')
-    setLoading(true)
-
-    // The AI should only ever see the real conversation, never internal notes.
-    const conversationOnly = newMessages
-      .filter((msg) => msg.type === 'chat')
-      .map((msg) => ({ role: msg.role, content: msg.content }))
-
-    try {
-      const res = await fetch('http://localhost:3001/api/chat', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ticket, messages: conversationOnly }),
-      })
-      const data = await res.json()
-      setMessages((prev) => [...prev, { type: 'chat', role: 'assistant', content: data.reply }])
-    } catch (error) {
-      console.error(error)
-      setMessages((prev) => [
-        ...prev,
-        { type: 'chat', role: 'assistant', content: '[Could not reach the AI server]' },
-      ])
-    } finally {
-      setLoading(false)
-    }
-  }
-
+function ChatPanel({ ticket, messages, mode, onModeChange, input, onInputChange, onSend, loading }) {
   function handleKeyDown(e) {
     if (e.key === 'Enter') {
-      sendMessage()
+      onSend()
     }
   }
 
@@ -84,13 +39,13 @@ function ChatPanel({ ticket }) {
         <div className="chat-mode-toggle">
           <button
             className={mode === 'reply' ? 'active' : ''}
-            onClick={() => setMode('reply')}
+            onClick={() => onModeChange('reply')}
           >
             Reply
           </button>
           <button
             className={mode === 'note' ? 'active' : ''}
-            onClick={() => setMode('note')}
+            onClick={() => onModeChange('note')}
           >
             Internal Note
           </button>
@@ -98,12 +53,12 @@ function ChatPanel({ ticket }) {
         <div className="chat-input-row">
           <input
             value={input}
-            onChange={(e) => setInput(e.target.value)}
+            onChange={(e) => onInputChange(e.target.value)}
             onKeyDown={handleKeyDown}
             placeholder={mode === 'note' ? 'Add an internal note...' : 'Type your response...'}
             disabled={loading}
           />
-          <button onClick={sendMessage} disabled={loading}>
+          <button onClick={onSend} disabled={loading}>
             {mode === 'note' ? 'Add Note' : 'Send'}
           </button>
         </div>
