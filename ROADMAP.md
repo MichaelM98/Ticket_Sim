@@ -52,9 +52,9 @@ Claude's picks for what actually builds the underlying skill, not just
       briefly critiques questions asked, professionalism, and whether the
       root cause was found; shown as a Feedback card in the right rail.
       Required lifting chat state from `ChatPanel` up to `TicketDetail`.
-- [ ] Escalation option — an "Escalate to Tier 2" action alongside Resolve/
-      Close (new "Escalated" status/badge). Knowing when to escalate rather
-      than struggle is a real, tested help-desk skill.
+- [x] Escalation option — an "Escalate to Tier 2" action alongside Resolve/
+      Close, with its own "Escalated" status/badge (reflected in the queue
+      table and Reports breakdown too).
 - [ ] Vague/non-technical customers — some generated tickets spawn a customer
       who describes their problem imprecisely ("it's just not working") and
       needs to be drawn out with good questions, instead of every customer
