@@ -47,10 +47,11 @@ Mockup (approved): https://claude.ai/code/artifact/8e6622c3-99c0-471c-84ea-4e7e1
 ## v2.5 — deeper practice value
 Claude's picks for what actually builds the underlying skill, not just
 "looks realistic":
-- [ ] Post-resolution AI feedback — on Mark Resolved, an AI "quality
-      reviewer" briefly critiques the technician's questions, professionalism,
-      and whether the root cause was actually found. Closes the loop between
-      "practiced a ticket" and "know if you did it well."
+- [x] Post-resolution AI feedback — on Mark Resolved, `/api/feedback` sends
+      the (notes-stripped) transcript to Claude as a "quality reviewer" who
+      briefly critiques questions asked, professionalism, and whether the
+      root cause was found; shown as a Feedback card in the right rail.
+      Required lifting chat state from `ChatPanel` up to `TicketDetail`.
 - [ ] Escalation option — an "Escalate to Tier 2" action alongside Resolve/
       Close (new "Escalated" status/badge). Knowing when to escalate rather
       than struggle is a real, tested help-desk skill.
