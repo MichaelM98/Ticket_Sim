@@ -1,11 +1,14 @@
-function FeedbackPanel({ feedback, loading }) {
+function FeedbackPanel({ feedback, score, loading }) {
   return (
     <div className="info-card feedback-card">
       <div className="info-card-title">Feedback</div>
       {loading ? (
         <div className="feedback-loading">Reviewing your conversation...</div>
       ) : (
-        <div className="feedback-text">{feedback}</div>
+        <>
+          {score != null && <div className="feedback-score">{score} / 5</div>}
+          <div className="feedback-text">{feedback}</div>
+        </>
       )}
     </div>
   )

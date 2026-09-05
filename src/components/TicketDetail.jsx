@@ -2,8 +2,8 @@ import { useState } from 'react'
 import ChatPanel from './ChatPanel'
 import FeedbackPanel from './FeedbackPanel'
 
-function TicketDetail({ ticket, conversation, onUpdateConversation, onBack, onUpdateStatus }) {
-  const { messages, feedback, feedbackLoading } = conversation
+function TicketDetail({ ticket, conversation, onUpdateConversation, onRecordScore, onBack, onUpdateStatus }) {
+  const { messages, feedback, score, feedbackLoading } = conversation
   const [input, setInput] = useState('')
   const [mode, setMode] = useState('reply')
   const [loading, setLoading] = useState(false)
@@ -68,7 +68,8 @@ function TicketDetail({ ticket, conversation, onUpdateConversation, onBack, onUp
         body: JSON.stringify({ ticket, messages: transcript }),
       })
       const data = await res.json()
-      onUpdateConversation({ feedback: data.feedback, feedbackLoading: false })
+      onUpdateConversation({ feedback: data.feedback, score: data.score, feedbackLoading: false })
+      onRecordScore(data.score)
     } catch (error) {
       console.error(error)
       onUpdateConversation({ feedback: 'Could not get feedback right now.', feedbackLoading: false })
@@ -137,7 +138,7 @@ function TicketDetail({ ticket, conversation, onUpdateConversation, onBack, onUp
           </div>
 
           {(feedback || feedbackLoading) && (
-            <FeedbackPanel feedback={feedback} loading={feedbackLoading} />
+            <FeedbackPanel feedback={feedback} score={score} loading={feedbackLoading} />
           )}
         </div>
       </div>

@@ -34,22 +34,38 @@ function BreakdownCard({ title, counts, total, order }) {
   )
 }
 
-function Reports({ tickets }) {
+function Reports({ tickets, stats }) {
   const total = tickets.length
   const statusCounts = countBy(tickets, 'status')
   const categoryCounts = countBy(tickets, 'category')
   const priorityCounts = countBy(tickets, 'priority')
+
+  const scores = stats.scores
+  const averageScore = scores.length
+    ? (scores.reduce((sum, score) => sum + score, 0) / scores.length).toFixed(1)
+    : null
 
   return (
     <div>
       <div className="content-header">
         <div>
           <div className="page-title">Reports</div>
-          <div className="page-subtitle">This session &middot; {total} tickets</div>
+          <div className="page-subtitle">Current batch &middot; {total} tickets</div>
         </div>
       </div>
 
       <div className="reports-grid">
+        <div className="info-card">
+          <div className="info-card-title">Your Progress (lifetime)</div>
+          <div className="info-row">
+            <span>Tickets rated</span>
+            <span>{scores.length}</span>
+          </div>
+          <div className="info-row">
+            <span>Average score</span>
+            <span>{averageScore ? `${averageScore} / 5` : '—'}</span>
+          </div>
+        </div>
         <BreakdownCard
           title="Status"
           counts={statusCounts}

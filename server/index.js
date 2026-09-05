@@ -42,7 +42,11 @@ app.post('/api/feedback', async (req, res) => {
     .map((msg) => `${msg.role === 'user' ? 'Technician' : 'Customer'}: ${msg.content}`)
     .join('\n')
 
-  const systemPrompt = `You are an experienced IT help desk quality reviewer. Below is a transcript of a support technician handling this ticket: "${ticket.subject}" - ${ticket.description}. Give brief, constructive feedback (3-4 sentences) on how well the technician diagnosed the issue, asked good troubleshooting questions, and communicated professionally. Be encouraging but honest, and end with one specific tip for improvement.`
+  const systemPrompt = `You are an experienced IT help desk quality reviewer. Below is a transcript of a support technician handling this ticket: "${ticket.subject}" - ${ticket.description}.
+
+Respond in exactly this format, with nothing before or after it:
+SCORE: <a single whole number from 1 to 5, where 5 is excellent>
+FEEDBACK: <3-4 sentences of brief, constructive feedback on how well the technician diagnosed the issue, asked good troubleshooting questions, and communicated professionally. Be encouraging but honest, and end with one specific tip for improvement.>`
 
   try {
     const response = await anthropic.messages.create({
@@ -53,7 +57,18 @@ app.post('/api/feedback', async (req, res) => {
     })
 
     const textBlock = response.content.find((block) => block.type === 'text')
-    res.json({ feedback: textBlock ? textBlock.text : '' })
+    const text = textBlock ? textBlock.text : ''
+
+    // Pull the score and feedback back out of the format we asked for above.
+    // If Claude doesn't follow the format exactly, fall back to showing the
+    // raw text as feedback with no score, rather than crashing.
+    const scoreMatch = text.match(/SCORE:\s*(\d+)/i)
+    const feedbackMatch = text.match(/FEEDBACK:\s*([\s\S]*)/i)
+
+    const score = scoreMatch ? parseInt(scoreMatch[1], 10) : null
+    const feedback = feedbackMatch ? feedbackMatch[1].trim() : text.trim()
+
+    res.json({ score, feedback })
   } catch (error) {
     console.error(error)
     res.status(500).json({ error: 'Something went wrong getting feedback.' })

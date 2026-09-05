@@ -123,6 +123,41 @@ a {
   margin-top: 2px;
 }
 
+.queue-filters {
+  display: flex;
+  gap: 10px;
+}
+
+.queue-filters select {
+  padding: 8px 12px;
+  border: 1px solid oklch(88% 0.005 260);
+  border-radius: 8px;
+  color: oklch(20% 0.01 260);
+  background: white;
+  font-size: 13px;
+}
+
+.reset-button {
+  padding: 8px 14px;
+  border: 1px solid oklch(88% 0.005 260);
+  border-radius: 8px;
+  color: oklch(20% 0.01 260);
+  background: white;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.reset-button:hover {
+  background: oklch(97% 0.003 260);
+}
+
+.queue-empty {
+  padding: 20px;
+  color: oklch(55% 0.01 260);
+  font-size: 13px;
+}
+
 /* Ticket table */
 .ticket-table {
   background: white;
@@ -487,7 +522,7 @@ a {
 /* Reports */
 .reports-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 16px;
   align-items: start;
 }
@@ -538,6 +573,13 @@ a {
   font-size: 13px;
   color: oklch(55% 0.01 260);
   font-style: italic;
+}
+
+.feedback-score {
+  font-weight: 800;
+  font-size: 18px;
+  color: oklch(45% 0.15 265);
+  margin-bottom: 6px;
 }
 
 .feedback-text {
