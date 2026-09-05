@@ -59,10 +59,13 @@ Claude's picks for what actually builds the underlying skill, not just
       `vague` flag that adds instructions to the AI's system prompt so that
       customer needs to be drawn out with good questions instead of giving
       clear details up front; invisible in the UI, so it's a surprise.
-- [ ] Small built-in Knowledge Base — a handful of short troubleshooting
-      articles (searchable) covering the common ticket categories, so there's
-      something realistic to reference mid-ticket instead of working from
-      memory alone.
+- [x] Small built-in Knowledge Base — 8 short, searchable troubleshooting
+      articles (`src/data/knowledgeBase.js`) covering the common ticket
+      categories, its own sidebar tab.
+- [x] (Bug fix, found while building this) Per-ticket conversations now
+      persist in `App.jsx` (keyed by ticket id) instead of living inside
+      `TicketDetail`'s local state — switching sidebar tabs *or* going back
+      to the queue and reopening the same ticket no longer wipes the chat.
 
 ## v3 — ideas (not started)
 - [ ] Package the app so it's downloadable/runnable locally as a standalone
