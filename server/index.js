@@ -13,7 +13,11 @@ const anthropic = new Anthropic()
 app.post('/api/chat', async (req, res) => {
   const { ticket, messages } = req.body
 
-  const systemPrompt = `You are ${ticket.requester}, an employee contacting IT support about this problem: "${ticket.description}". Stay fully in character as the customer experiencing this issue - never reveal you are an AI. Respond briefly and naturally, like someone chatting with a help desk technician, and react realistically to their troubleshooting questions.`
+  const vagueInstructions = ticket.vague
+    ? ` You are not very technical and struggle to describe computer problems precisely - you tend to say things like "it's just not working" or "I don't know what that means" when asked technical questions, and you need the technician to ask specific, guided questions before you give useful details. Don't volunteer technical details unless directly and clearly asked.`
+    : ''
+
+  const systemPrompt = `You are ${ticket.requester}, an employee contacting IT support about this problem: "${ticket.description}". Stay fully in character as the customer experiencing this issue - never reveal you are an AI. Respond briefly and naturally, like someone chatting with a help desk technician, and react realistically to their troubleshooting questions.${vagueInstructions}`
 
   try {
     const response = await anthropic.messages.create({

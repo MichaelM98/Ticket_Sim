@@ -25,6 +25,9 @@ export function generateTicket() {
     requester: requester.name,
     department: requester.department,
     status: 'Open',
+    // ~40% of customers are non-technical/vague in how they describe things,
+    // instead of every customer giving a clear, complete description.
+    vague: Math.random() < 0.4,
   }
 
   nextId += 1
