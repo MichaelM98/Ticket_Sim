@@ -54,7 +54,7 @@ function Reports({ tickets }) {
           title="Status"
           counts={statusCounts}
           total={total}
-          order={['Open', 'Resolved', 'Closed']}
+          order={['Open', 'Escalated', 'Resolved', 'Closed']}
         />
         <BreakdownCard title="Category" counts={categoryCounts} total={total} />
         <BreakdownCard

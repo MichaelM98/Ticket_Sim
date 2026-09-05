@@ -96,6 +96,7 @@ function TicketDetail({ ticket, onBack, onUpdateStatus }) {
         <div className="ticket-actions">
           <button onClick={handleResolve}>Mark Resolved</button>
           <button onClick={() => onUpdateStatus(ticket.id, 'Closed')}>Close Ticket</button>
+          <button onClick={() => onUpdateStatus(ticket.id, 'Escalated')}>Escalate to Tier 2</button>
         </div>
       </div>
 

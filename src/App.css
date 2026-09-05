@@ -189,6 +189,7 @@ a {
 .pill-open { background: oklch(92% 0.05 250); color: oklch(40% 0.13 250); }
 .pill-resolved { background: oklch(92% 0.06 150); color: oklch(38% 0.12 150); }
 .pill-closed { background: oklch(93% 0.006 260); color: oklch(48% 0.01 260); }
+.pill-escalated { background: oklch(92% 0.06 320); color: oklch(42% 0.14 320); }
 
 /* Ticket detail */
 .back-link {
