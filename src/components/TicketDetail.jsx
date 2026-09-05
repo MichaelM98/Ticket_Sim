@@ -2,13 +2,11 @@ import { useState } from 'react'
 import ChatPanel from './ChatPanel'
 import FeedbackPanel from './FeedbackPanel'
 
-function TicketDetail({ ticket, onBack, onUpdateStatus }) {
-  const [messages, setMessages] = useState([])
+function TicketDetail({ ticket, conversation, onUpdateConversation, onBack, onUpdateStatus }) {
+  const { messages, feedback, feedbackLoading } = conversation
   const [input, setInput] = useState('')
   const [mode, setMode] = useState('reply')
   const [loading, setLoading] = useState(false)
-  const [feedback, setFeedback] = useState(null)
-  const [feedbackLoading, setFeedbackLoading] = useState(false)
 
   const initials = ticket.requester
     .split(' ')
@@ -25,13 +23,13 @@ function TicketDetail({ ticket, onBack, onUpdateStatus }) {
     if (!input.trim()) return
 
     if (mode === 'note') {
-      setMessages((prev) => [...prev, { type: 'note', content: input }])
+      onUpdateConversation({ messages: [...messages, { type: 'note', content: input }] })
       setInput('')
       return
     }
 
     const newMessages = [...messages, { type: 'chat', role: 'user', content: input }]
-    setMessages(newMessages)
+    onUpdateConversation({ messages: newMessages })
     setInput('')
     setLoading(true)
 
@@ -42,13 +40,17 @@ function TicketDetail({ ticket, onBack, onUpdateStatus }) {
         body: JSON.stringify({ ticket, messages: conversationOnly(newMessages) }),
       })
       const data = await res.json()
-      setMessages((prev) => [...prev, { type: 'chat', role: 'assistant', content: data.reply }])
+      onUpdateConversation({
+        messages: [...newMessages, { type: 'chat', role: 'assistant', content: data.reply }],
+      })
     } catch (error) {
       console.error(error)
-      setMessages((prev) => [
-        ...prev,
-        { type: 'chat', role: 'assistant', content: '[Could not reach the AI server]' },
-      ])
+      onUpdateConversation({
+        messages: [
+          ...newMessages,
+          { type: 'chat', role: 'assistant', content: '[Could not reach the AI server]' },
+        ],
+      })
     } finally {
       setLoading(false)
     }
@@ -58,7 +60,7 @@ function TicketDetail({ ticket, onBack, onUpdateStatus }) {
     const transcript = conversationOnly(messages)
     if (transcript.length === 0) return // nothing to review yet
 
-    setFeedbackLoading(true)
+    onUpdateConversation({ feedbackLoading: true })
     try {
       const res = await fetch('http://localhost:3001/api/feedback', {
         method: 'POST',
@@ -66,12 +68,10 @@ function TicketDetail({ ticket, onBack, onUpdateStatus }) {
         body: JSON.stringify({ ticket, messages: transcript }),
       })
       const data = await res.json()
-      setFeedback(data.feedback)
+      onUpdateConversation({ feedback: data.feedback, feedbackLoading: false })
     } catch (error) {
       console.error(error)
-      setFeedback('Could not get feedback right now.')
-    } finally {
-      setFeedbackLoading(false)
+      onUpdateConversation({ feedback: 'Could not get feedback right now.', feedbackLoading: false })
     }
   }
 

@@ -15,6 +15,12 @@ function Sidebar({ view, onNavigate }) {
       >
         Tickets
       </div>
+      <div
+        className={`nav-item ${view === 'kb' ? 'active' : ''}`}
+        onClick={() => onNavigate('kb')}
+      >
+        Knowledge Base
+      </div>
       <div className="nav-item">Customers</div>
       <div
         className={`nav-item ${view === 'reports' ? 'active' : ''}`}

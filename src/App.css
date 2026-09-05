@@ -443,6 +443,47 @@ a {
   cursor: not-allowed;
 }
 
+/* Knowledge base */
+.kb-search {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid oklch(88% 0.005 260);
+  border-radius: 8px;
+  color: oklch(20% 0.01 260);
+  font-size: 13px;
+  margin-bottom: 18px;
+}
+
+.kb-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.kb-article-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.kb-article-title {
+  font-weight: 700;
+  font-size: 14px;
+  color: oklch(20% 0.01 260);
+}
+
+.kb-article-body {
+  font-size: 13px;
+  line-height: 1.5;
+  color: oklch(40% 0.01 260);
+}
+
+.kb-empty {
+  color: oklch(55% 0.01 260);
+  font-size: 13px;
+}
+
 /* Reports */
 .reports-grid {
   display: grid;
