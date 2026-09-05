@@ -16,11 +16,14 @@ to *practice*, not to impress other developers.
       feature) — Express backend (`server/`) holds the API key, calls
       Claude Haiku 4.5, frontend `ChatPanel.jsx` talks to it
 - [x] Resolve / Close actions on a ticket, reflected as a status badge back
-      in the queue (Open / Resolved / Closed) — intentionally resets on page
-      reload (no persistence) so every reload is a fresh practice run
+      in the queue (Open / Resolved / Closed) — **superseded below**: this
+      originally reset on reload on purpose; once scoring/tracking was added
+      that stopped making sense, so it's now persisted instead (see v2.6).
 
 ## Stretch ideas
-- [ ] Sorting/filtering the queue by priority or category
+- [x] Sorting/filtering the queue by priority or category — dropdown filters
+      in `TicketQueue.jsx`, category list built dynamically from whatever's
+      in the current batch
 
 ## v2 — realism pass
 Mockup (approved): https://claude.ai/code/artifact/8e6622c3-99c0-471c-84ea-4e7e16412b2c
@@ -66,6 +69,20 @@ Claude's picks for what actually builds the underlying skill, not just
       persist in `App.jsx` (keyed by ticket id) instead of living inside
       `TicketDetail`'s local state — switching sidebar tabs *or* going back
       to the queue and reopening the same ticket no longer wipes the chat.
+
+## v2.6 — persistence, scoring, and lifetime tracking
+- [x] Numeric feedback score (1-5) alongside the written critique — backend
+      asks Claude for an exact `SCORE:`/`FEEDBACK:` format and parses it
+      with a regex, falling back to text-only if the format isn't followed.
+- [x] `localStorage` persistence — tickets, conversations, and lifetime
+      stats all survive a refresh or closing the tab (`src/data/storage.js`).
+- [x] Lifetime stats (tickets rated, average score) shown on Reports as
+      "Your Progress" — separate from the current batch's stats, and never
+      cleared by a reset.
+- [x] "New Batch" button (with a confirm prompt) generates a fresh set of
+      tickets and clears current conversations, without touching lifetime
+      stats — the deliberate reset control now that reload no longer resets
+      anything.
 
 ## v3 — ideas (not started)
 - [ ] Package the app so it's downloadable/runnable locally as a standalone
